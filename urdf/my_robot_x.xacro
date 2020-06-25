@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<robot name="my_robot" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+    <xacro:include filename="$(find my_robot_2)/urdf/cylinder_wheel.urdf.xacro"/>
+    <xacro:include filename="$(find my_robot_2)/urdf/caster_wheel.urdf.xacro"/>
+
+    <xacro:property name="base_radius" value="0.15"/>
+    <xacro:property name="base_height" value="0.02"/>
+    <xacro:property name="base_mass" value="5"/>
+
+    <link name="base_link">
+        <visual>
+            <geometry>
+                <cylinder length="${base_height}" radius="${base_radius}"/>
+            </geometry>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <material name="Red">
+                <color rgba="1 0 0 1"/>
+            </material>
+        </visual>
+        <collision>
+            <geometry>
+                <cylinder length="${base_height}" radius="${base_radius}"/>
+            </geometry>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+        </collision>
+        <cylinder_inertia m="${base_mass}" r="${base_radius}" h="${base_height}"/>
+    </link>
+
+    <cylinder_wheel fr="front" lr="right" parent="base_link" translate_x="0" translate_y="0.5" flip_y="1"/>
+    <cylinder_wheel fr="front" lr="left" parent="base_link" translate_x="0" translate_y="-0.5" flip_y="1"/> 
+    <caster_wheel fr="front" parent="base_link" asse_x="0" origin_x="0.115" origin_z="0.007"/>
+    <caster_wheel fr="rear" parent="base_link" asse_x="0.02" origin_x="-0.135" origin_z="0.009"/>
+    
+
+    <gazebo>
+        <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+        <robotNamespace>/</robotNamespace>
+        </plugin>
+    </gazebo>
+</robot>
+
+    
+
+
+
