@@ -1,7 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+
 <launch>
+  <arg name="world" default="$(find my_robot_2)/worlds/Maze/model.world" />
+
   <!-- We resume the logic in empty_world.launch, changing only the name of the world to be launched -->
   <include file="$(find gazebo_ros)/launch/empty_world.launch">
-    <arg name="world_name" value="$(find my_robot_2)/world/Maze/model.world"/>
+    <arg name="world_name" value="$(arg world)"/>
     <arg name="paused" value="false"/>
     <arg name="use_sim_time" value="true"/>
     <arg name="gui" value="true"/>
