@@ -1,8 +1,9 @@
 <?xml version="1.0"?>
 <robot name="my_robot" xmlns:xacro="http://www.ros.org/wiki/xacro">
 
-    <xacro:include filename="$(find my_robot_2)/urdf/cylinder_wheel.urdf.xacro"/>
-    <xacro:include filename="$(find my_robot_2)/urdf/caster_wheel.urdf.xacro"/>
+    <xacro:include filename="$(find maze)/urdf/cylinder_wheel.urdf.xacro"/>
+    <xacro:include filename="$(find maze)/urdf/caster_wheel.urdf.xacro"/>
+    <xacro:include filename="$(find maze)/urdf/visual_sensor.xacro"/>
 
     <xacro:property name="base_radius" value="0.15"/>
     <xacro:property name="base_height" value="0.02"/>
@@ -31,11 +32,27 @@
     <cylinder_wheel fr="front" lr="left" parent="base_link" translate_x="0" translate_y="-0.5" flip_y="1"/> 
     <caster_wheel fr="front" parent="base_link" asse_x="0" origin_x="0.115" origin_z="0.007"/>
     <caster_wheel fr="rear" parent="base_link" asse_x="0.02" origin_x="-0.135" origin_z="0.009"/>
+
+    <hokuyo base_radius="${base_radius}" base_height="${base_height}"/>
+
     
 
     <gazebo>
         <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
         <robotNamespace>/</robotNamespace>
+        </plugin>
+    </gazebo>
+
+    <gazebo>
+        <plugin name="p3d_base_controller" filename="libgazebo_ros_p3d.so">
+        <alwaysOn>true</alwaysOn>
+        <updateRate>50.0</updateRate>
+        <bodyName>base_link</bodyName>
+        <topicName>ground_truth/state</topicName>
+        <gaussianNoise>0.01</gaussianNoise>
+        <frameName>map</frameName>
+        <xyzOffsets>0 0 0</xyzOffsets>
+        <rpyOffsets>0 0 0</rpyOffsets>
         </plugin>
     </gazebo>
 </robot>

@@ -1,13 +1,13 @@
 <launch>
 
-  <arg name="model" default="$(find my_robot_2)/urdf/my_robot.urdf"/>
+  <arg name="model" default="$(find maze)/urdf/my_robot_x.xacro"/>
   <!--<arg name="gui" default="true" />-->
-  <arg name="rvizconfig" default="$(find my_robot_2)/rviz/urdf.rviz" />
+  <arg name="rvizconfig" default="$(find maze)/rviz/urdf.rviz" />
 
   <param name="robot_description" command="$(find xacro)/xacro.py $(arg model)" />
   <!--<param name="use_gui" value="$(arg gui)"/>-->
 
-  <include file="$(find my_robot_2)/launch/gazebo.launch">
+  <include file="$(find maze)/launch/gazebo.launch">
     <arg name="model" value="$(arg model)" />
   </include>
   
@@ -18,11 +18,11 @@
   <node name="rviz" pkg="rviz" type="rviz" args="-d $(arg rvizconfig)" required="true" />
 
   <rosparam command="load"
-            file="$(find my_robot_2)/config/joints.yaml"
+            file="$(find maze)/config/joints.yaml"
             ns="r2d2_joint_state_controller" />
   
   <rosparam command="load"
-            file="$(find my_robot_2)/config/diff_drive.yaml"
+            file="$(find maze)/config/diff_drive.yaml"
             ns="r2d2_diff_drive_controller" /> 
 
   <node name="r2d2_controller_spawner" pkg="controller_manager" type="spawner"
