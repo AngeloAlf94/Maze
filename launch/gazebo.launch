@@ -12,8 +12,7 @@
 
   <!-- We resume the logic in empty_world.launch, changing only the name of the world to be launched -->
   <include file="$(find gazebo_ros)/launch/empty_world.launch">
-    <arg name="world_name" value="$(find maze)/world/Maze/model.world"/>
-    
+    <arg name="world_name" value="$(find maze)/world/Maze/model.world"/> 
   </include>
 
   <param name="robot_description" command="$(find xacro)/xacro.py $(arg model)" />

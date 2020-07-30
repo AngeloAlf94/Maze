@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.0.2)
-project(my_robot_2)
+project(maze)
 
 ## Compile as C++11, supported in ROS Kinetic and newer
 # add_compile_options(-std=c++11)
@@ -102,7 +102,7 @@ catkin_package(
 #  INCLUDE_DIRS include
 #  LIBRARIES my_robot_2
 #  CATKIN_DEPENDS other_catkin_pkg
-#  DEPENDS 
+  DEPENDS 
     system_lib 
     rospy
     gazebo_ros
