@@ -9,6 +9,15 @@
     <xacro:property name="base_height" value="0.02"/>
     <xacro:property name="base_mass" value="5"/>
 
+    <!-- dummy link -->
+    <link name="map">
+    </link>
+    <joint name="map_joint" type="fixed">
+        <parent link="map"/>
+        <child link="base_link"/>
+    </joint>
+
+
     <link name="base_link">
         <visual>
             <geometry>
