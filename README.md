@@ -1,17 +1,20 @@
 # Maze
 
 To launch the simulation:
-
+```sh
 roscd maze
 
-cd launch
-
 roslaunch maze display_x.launch
+```
 
-# To launch gmapping, open a new terminal:
-
+# Gmapping
+Install package:
+```sh
+sudo apt install ros-melodic-gmapping
+```
+Launch Gmapping
+```sh
 roslaunch maze gmapping.launch
-
-After launched gmapping, to show in rviz the map scanned, go in rviz and:
-
+```
+After launched gmapping, to show in rviz the map scanned, go in rviz:
 Add - Map - /map in topic space
