@@ -8,9 +8,13 @@ project(maze)
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
 ## is used, also find other catkin packages
 find_package(catkin REQUIRED COMPONENTS
-  geometry_msgs
   roscpp
-  tf
+  tf2
+  tf2_ros
+  tf2_geometry_msgs
+  nav_msgs
+  sensor_msgs
+  geometry_msgs
 )
 
 ## System dependencies are found with CMake's conventions
@@ -104,16 +108,16 @@ find_package(catkin REQUIRED COMPONENTS
 ## CATKIN_DEPENDS: catkin_packages dependent projects also need
 ## DEPENDS: system dependencies of this project that dependent projects also need
 catkin_package(
-#  INCLUDE_DIRS include
-#  LIBRARIES my_robot_2
-#  CATKIN_DEPENDS other_catkin_pkg
-  DEPENDS 
-    system_lib 
+  #INCLUDE_DIRS include
+  LIBRARIES my_robot_2
+  CATKIN_DEPENDS 
+    roscpp
     rospy
     gazebo_ros
-    
-  
-
+    geometry_msgs
+    tf2
+  #DEPENDS 
+    #system_lib 
 )
 
 ###########
@@ -157,10 +161,10 @@ include_directories(
 #   ${catkin_LIBRARIES}
 # )
 
-add_executable(tf_broadcaster src/tf_broadcaster.cpp)
-add_executable(tf_listener src/tf_listener.cpp)
-target_link_libraries(tf_broadcaster ${catkin_LIBRARIES})
-target_link_libraries(tf_listener ${catkin_LIBRARIES})
+#add_executable(tf_broadcaster src/tf_broadcaster.cpp)
+#add_executable(tf_listener src/tf_listener.cpp)
+#target_link_libraries(tf_broadcaster ${catkin_LIBRARIES})
+#target_link_libraries(tf_listener ${catkin_LIBRARIES})
 
 #############
 ## Install ##
